@@ -102,6 +102,7 @@ def test_validation_models_and_auth(body):
     with client(api_key="secret") as http:
         assert http.get("/v1/models").status_code == 401
         assert http.post("/v1/systemone", json=body).status_code == 401
+        assert http.post("/v1/decisions", json={}).status_code == 401
         assert http.get("/v1/models", headers={"Authorization": "Bearer secret"}).status_code == 200
 
 
